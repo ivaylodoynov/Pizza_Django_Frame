@@ -6,8 +6,8 @@ urlpatterns = [
     path('', home_page, name='home'),
     path('dashboard/', home_details, name='dashboard'),
 
-    path('game/create/', create_pizza, name='create pizza'),
-    path('game/edit/<int:pizza_id>/', edit_pizza, name='edit pizza'),
-    path('game/delete/<int:pizza_id>/', delete_pizza, name='delete pizza'),
-    path('game/details/<int:pizza_id>/', show_pizza_details, name='pizza details'),
+    path('pizza/create/', create_pizza, name='create pizza'),
+    path('pizza/edit/<int:pizza_id>/', edit_pizza, name='edit pizza'),
+    path('pizza/delete/<int:pizza_id>/', delete_pizza, name='delete pizza'),
+    path('pizza/details/<int:pizza_id>/', show_pizza_details, name='pizza details'),
 ]
