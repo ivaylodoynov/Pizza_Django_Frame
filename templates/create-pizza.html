@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <!-- create pizza section -->
+    <section id="create-page" class="auth">
+        <!-- create pizza form -->
+        <form id="create" method="post" action="{% url 'create pizza' %}">
+            <div class="container">
+                <!-- create pizza paragraph -->
+                <h1>Create Pizza</h1>
+                {% csrf_token %}
+                {{ form }}
+                <!-- create pizza button -->
+                <input class="btn submit" type="submit" value="Create Pizza">
+            </div>
+        </form>
+    </section>
+{% endblock %}

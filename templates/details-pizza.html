@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <!-- details section -->
+    <section id="pizza-details">
+        <h1>Pizza Details</h1>
+        <div class="info-section">
+            <div class="pizza-header">
+                <!-- pizza image -->
+                <img class="pizza-img"
+                     src="{{ pizza.image_url }}"
+                     alt='pizza image'/>
+                <!-- title and rating -->
+                <h1>{{ pizza.name }} <span class="levels">Calories: {{ pizza.calories }}</span></h1>
+                <!-- pizza price (if any) -->
+                <p><span class="type">Price: {{ pizza.price }}</span></p>
+                <p><span class="type">Owner: {{ pizza.user.email }}</span></p>
+                {% if not is_owner %}
+                    <a href="{% url 'like pizza' pizza.id %}">
+                    {% if is_liked %}
+                        <i class="fa fa-heart" aria-hidden="true"></i>
+                    {% else %}
+                        <i class="fa fa-heart-o" aria-hidden="true"></i>
+                    {% endif %}
+                </a>
+                <p class="mt-2">Likes: {{ pizza.likes_count }}</p>
+                {% endif %}
+
+            </div>
+            <!-- pizza summary (if any)-->
+            <p class="text">
+                {{ pizza.description }}
+            </p>
+
+            <!-- Edit/Delete buttons -->
+            {% if is_owner %}
+                <div class="buttons">
+                    <a href="{% url 'edit pizza' pizza.id %}" class="button">Edit</a>
+                    <a href="{% url 'delete pizza' pizza.id %}" class="button">Delete</a>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}

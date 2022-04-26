@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "styles/style.css" %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="icon" type="image/png" href="https://pluspng.com/img-png/instagram-png-instagram-png-icon-1024.png">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    <script src="{% static 'theme/js/scripts.js' %}"></script>
+    {#    <link rel="stylesheet" href="{% static 'css/main.css' %}">#}
+    <title>Pizza Slices</title>
+</head>
+
+<body>
+<div id="box">
+    <header>
+
+        <!-- Navigation Bar -->
+        <h1><a class="home" href="{% url 'home' %}">Pizza Slices</a></h1>
+        <nav>
+
+            <!-- if the user has not created a profile -->
+
+            {% if request.user.is_authenticated %}
+                <a href="url to profile">{{ request.user }}</a>
+                <!-- if the user has created a profile -->
+                <a href="{% url 'dashboard' %}">Dashboard</a>
+                <a href="{% url 'create pizza' %}">Create Pizza</a>
+                <a href="{% url 'profile' %}">Profile</a>
+                <a href="{% url 'logout user' %}">Logout</a>
+
+            {% else %}
+                <a href="{% url 'create profile' %}">Create Profile old</a>
+                <a href="{% url 'login user' %}">Login</a>
+                <a href="{% url 'register user' %}">Register</a>
+
+            {% endif %}
+
+        </nav>
+    </header>
+    {% block content %}
+    {% endblock %}
+    <!-- footer -->
+    <footer>
+        Copyright © 2020 AndroThemes All Rights Reserved.
+    </footer>
+</div>
+</body>
+</html>

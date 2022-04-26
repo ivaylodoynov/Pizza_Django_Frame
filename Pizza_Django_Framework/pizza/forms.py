@@ -5,7 +5,7 @@ from Pizza_Django_Framework.pizza.models import Pizza
 class CreatePizzaForm(forms.ModelForm):
     class Meta:
         model = Pizza
-        fields = '__all__'
+        exclude =('user',)
 
 class EditPizzaForm(CreatePizzaForm):
     pass

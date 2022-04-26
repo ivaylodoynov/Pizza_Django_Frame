@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <!-- Display paragraph: If there are no pizza-->
+    <!-- Display div "pizza" with information about every pizza (if any)-->
+    <section id="welcome-world">
+        {% if pizzas %}
+            {% for pizza in pizzas %}
+                <!-- first pizza-->
+                <div class="game">
+                    <div class="image-wrap">
+                        <!-- pizza image -->
+                        <img src="{{ pizza.image_url }}"
+                             alt="UNO">
+                    </div>
+                    <!-- pizza title -->
+                    <h3>{{ pizza.name }}</h3>
+                    <!-- pizza category-->
+                    <h1>{{ pizza.calories}}</h1>
+                    <div class="data-buttons">
+                        <!-- pizza details button -->
+                        <a href="{% url 'pizza details' pizza.id %}" class="btn details-btn">Details</a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="no-articles">No pizza yet</p>
+        {% endif %}
+    </section>
+{% endblock %}
