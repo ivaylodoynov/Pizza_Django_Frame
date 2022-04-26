@@ -72,6 +72,7 @@ def show_pizza_details(request, pizza_id):
     pizza.likes_count = pizza.like_set.count()
 
     is_owner = pizza.user == request.user
+    superuser = request.user.is_superuser
 
     is_liked_by_user =pizza.like_set.filter(user_id=request.user.id).exists()
 
@@ -79,6 +80,7 @@ def show_pizza_details(request, pizza_id):
         'pizza': pizza,
         'profile': profile,
         'is_owner': is_owner,
+        'superuser': superuser,
         'is_liked': is_liked_by_user,
 
     }

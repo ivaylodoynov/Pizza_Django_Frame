@@ -33,7 +33,12 @@
             </p>
 
             <!-- Edit/Delete buttons -->
-            {% if is_owner %}
+            {% if superuser %}
+                <div class="buttons">
+                    <a href="{% url 'edit pizza' pizza.id %}" class="button">Edit</a>
+                    <a href="{% url 'delete pizza' pizza.id %}" class="button">Delete</a>
+                </div>
+            {% elif is_owner %}
                 <div class="buttons">
                     <a href="{% url 'edit pizza' pizza.id %}" class="button">Edit</a>
                     <a href="{% url 'delete pizza' pizza.id %}" class="button">Delete</a>
