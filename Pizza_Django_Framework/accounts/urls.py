@@ -1,11 +1,10 @@
 from django.urls import path
 
-from Pizza_Django_Framework.accounts.views import login_user, register_user, logout_user, profile_details
+from Pizza_Django_Framework.accounts.views import logout_user, RegisterView, ProfileDetailsView, LoginUserView
 
-urlpatterns = [
-    path('login/', login_user, name='login user'),
+urlpatterns = (
+    path('login/', LoginUserView.as_view(), name='login user'),
     path('logout/', logout_user, name='logout user'),
-    path('register/', register_user, name='register user'),
-    path('profile/', profile_details, name='profile details'),
-
-]
+    path('register/', RegisterView.as_view(), name='register user'),
+    path('profile/', ProfileDetailsView.as_view(), name='profile details'),
+)

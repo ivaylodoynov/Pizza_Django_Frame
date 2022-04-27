@@ -14,7 +14,7 @@
         <form action="{% url 'profile details' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form }}
-            <button>Update</button>
+            <button class="btn btn-primary">Update</button>
         </form>
 
     </div>
