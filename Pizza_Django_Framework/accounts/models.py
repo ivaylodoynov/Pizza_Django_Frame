@@ -18,6 +18,7 @@ class PizzaUser(AbstractBaseUser, PermissionsMixin):
 
 class Profile(models.Model):
     profile_image=models.URLField(
+        null=True,
         blank=True
     )
     user =models.OneToOneField(

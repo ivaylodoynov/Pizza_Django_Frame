@@ -2,36 +2,48 @@
 
 {% block content %}
   <div class="text-center">
-    <h1>Hello, profile_user!</h1>
+    <h1>Hello, {{ request.user }}!</h1>
     <h5>This is your profile</h5>
-    <img class="rounded-circle mb-3" src="profile_picture_url" alt="Generic placeholder image" width="140" height="140">
-    <div class="w-50 m-auto">
-      form
+      {% if profile.profile_image  %}
+        <img class="rounded-circle mb-3" src="{{ profile.profile_image }}" alt="Generic placeholder image" width="140" height="140">
+        <div class="w-50 m-auto">
+      {% else %}
+        <img class="rounded-circle mb-3" src="https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" alt="Generic placeholder image" width="140" height="140">
+        <div class="w-50 m-auto">
+      {% endif %}
+        <form action="{% url 'profile details' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form }}
+            <button>Update</button>
+        </form>
+
     </div>
   </div>
     <hr>
-    if pets
-    <h2 class='text-center'>These are your pizza photos</h2>
-  <div class="row">        
+    {% if user_pizzas %}
+        <h2 class='text-center'>These are your pizzas</h2>
         <div class="row">
-        for pet in pets
-        <div class="col-lg-4">
-            <div class="card" style="width: 18rem;">
-                <img src="{{p.image.url}}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">pet_type pet_name, Age: pet_age</h5>
-                    <p class="card-text">pet_description</p>
-                    <p class="card-text"><strong>Owner: pet_user</strong></p>
-                    <a href="url to pet details" class="btn btn-primary">See details</a>
-                </div>
+            <div class="row">
+                {% for pizza in user_pizzas %}
+                    <div class="col-lg-4">
+                        <div class="card" style="width: 18rem;">
+                            <img src="{{pizza.image_url}}" class="card-img-top" alt="">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ pizza.name }} {{ pizza.calories }}, Price: {{ pizza.price }}</h5>
+                                <p class="card-text">{{ pizza.description }}</p>
+                                <p class="card-text"><strong>Owner: {{ request.user }}</strong></p>
+                                <a href="{% url 'pizza details' pizza.id %}" class="btn btn-primary">See details</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
         </div>
-    </div>
-  </div>
-  else
-  <div class="text-center">
-    <h2>You have no pizza</h2>
-    <a href="url to pet create" class="btn btn-success">Add Pizza Photo</a>
-  </div>
+    {% else %}
+      <div class="text-center">
+        <h2>You have no pizza</h2>
+        <a href="{% url 'create pizza' %}" class="btn btn-success">Add Pizza</a>
+      </div>
+    {% endif %}
 
 {% endblock %}
