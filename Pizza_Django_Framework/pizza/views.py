@@ -65,7 +65,7 @@ def create_pizza(request):
     context = {'form': form, 'profile': profile}
     return render(request, 'create-pizza.html', context)
 
-@login_required
+
 def show_pizza_details(request, pizza_id):
     profile = Profile.objects.first()
     pizza = Pizza.objects.get(id=pizza_id)
