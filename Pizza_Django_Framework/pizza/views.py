@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 
 from Pizza_Django_Framework.pizza.forms import CreatePizzaForm, DeletePizzaForm, EditPizzaForm
 from Pizza_Django_Framework.pizza.models import Pizza, Like
-from Pizza_Django_Framework.profiles.models import Profile
+from Pizza_Django_Framework.accounts.models import Profile
 
 
 def home_page(request):
@@ -22,7 +22,7 @@ def home_page(request):
 def home_details(request):
     profile = Profile.objects.first()
     if not profile:
-        return redirect('create profile') # tova e po name
+        return redirect('login user') # tova e po name
 
     pizzas = Pizza.objects.all()
 

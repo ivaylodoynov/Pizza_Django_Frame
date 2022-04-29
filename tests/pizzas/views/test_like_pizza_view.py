@@ -57,7 +57,6 @@ class LikePetViewTests(PizzaTestUtils, UserTestUtils, PizzaTestCase):
         like_exists = Like.objects.filter(
             user_id=self.user.id,
             pizza_id=pizza.id,
-        ) \
-            .exists()
+        ).exists()
 
         self.assertFalse(like_exists)
