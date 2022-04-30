@@ -21,7 +21,7 @@ class Profile(models.Model):
         null=True,
         blank=True
     )
-    user =models.OneToOneField(
+    user = models.OneToOneField(
         PizzaUser,
         on_delete=models.CASCADE,
         primary_key =True,

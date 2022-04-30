@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'Pizza_Django_Framework.pizza',
     'Pizza_Django_Framework.profiles',
     'Pizza_Django_Framework.accounts',
+    'Pizza_Django_Framework.store',
 
 ]
 

@@ -1,10 +1,11 @@
 from django.urls import path
 from Pizza_Django_Framework.pizza.views import home_page, home_details, create_pizza, edit_pizza, delete_pizza, \
-    show_pizza_details, like_pizza
+    show_pizza_details, like_pizza, about_details
 
 urlpatterns = [
     path('', home_page, name='home'),
     path('dashboard/', home_details, name='dashboard'),
+    path('about/', about_details, name='about'),
 
     path('pizza/create/', create_pizza, name='create pizza'),
     path('pizza/edit/<int:pizza_id>/', edit_pizza, name='edit pizza'),

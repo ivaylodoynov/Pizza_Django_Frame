@@ -19,6 +19,15 @@ def home_page(request):
     return render(request, 'home-page.html', context)
 
 
+def about_details(request):
+    pizzas = Pizza.objects.all()
+
+    context = {
+        'pizzas': pizzas,
+    }
+
+    return render(request, 'about.html', context)
+
 def home_details(request):
     profile = Profile.objects.first()
     if not profile:
